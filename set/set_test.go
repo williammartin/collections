@@ -80,6 +80,12 @@ var _ = Describe("Set", func() {
 	})
 
 	Describe("Element removal", func() {
+		Context("With no elements", func() {
+			It("should not throw an error", func() {
+				empty.Remove("1")
+			})
+		})
+
 		Context("With one element", func() {
 			It("should remove that element from the set", func() {
 				setUnderTest := set.New()
