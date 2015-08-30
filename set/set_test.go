@@ -5,8 +5,6 @@ import (
 
 	. "github.com/onsi/ginkgo"
 	. "github.com/onsi/gomega"
-
-	"fmt"
 )
 
 var _ = Describe("Set", func() {
@@ -24,8 +22,6 @@ var _ = Describe("Set", func() {
 		many.Add("2")
 		many.Add("3")
 	})
-
-	fmt.Println(empty)
 
 	Describe("Set emptiness", func() {
 		Context("With zero elements", func() {
@@ -79,6 +75,41 @@ var _ = Describe("Set", func() {
 			It("should not contain elements not added", func() {
 				Expect(one.Contains("2")).To(Equal(false))
 				Expect(many.Contains("5")).To(Equal(false))
+			})
+		})
+	})
+
+	Describe("Element removal", func() {
+		Context("With one element", func() {
+			It("should remove that element from the set", func() {
+				setUnderTest := set.New()
+				setUnderTest.Add("1")
+				setUnderTest.Remove("1")
+				Expect(setUnderTest.Contains("1")).To(Equal(false))
+			})
+		})
+
+		Context("With many elements", func() {
+			It("should remove many elements from the set", func() {
+				setUnderTest := set.New()
+				setUnderTest.Add("1")
+				setUnderTest.Add("2")
+				setUnderTest.Add("3")
+				setUnderTest.Remove("1")
+				setUnderTest.Remove("3")
+
+				Expect(setUnderTest.Contains("1")).To(Equal(false))
+				Expect(setUnderTest.Contains("2")).To(Equal(true))
+				Expect(setUnderTest.Contains("3")).To(Equal(false))
+			})
+		})
+	})
+
+	Describe("Element addition", func() {
+		Context("With an element added", func() {
+			It("should not add an element with the same value", func() {
+				one.Add("1")
+				Expect(one.Size()).To(Equal(1))
 			})
 		})
 	})
