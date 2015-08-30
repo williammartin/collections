@@ -1,19 +1,21 @@
 package linkedlist
 
 type LinkedList struct {
-	isEmpty bool
+	size int
 }
 
 func New() *LinkedList {
-	l := new(LinkedList)
-	l.isEmpty = true
-	return l
+	return new(LinkedList)
 }
 
 func (l *LinkedList) IsEmpty() bool {
-	return l.isEmpty
+	return l.size == 0
 }
 
 func (l *LinkedList) Add(value string) {
-	l.isEmpty = false
+	l.size++
+}
+
+func (l *LinkedList) Size() int {
+	return l.size
 }
