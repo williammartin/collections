@@ -7,7 +7,7 @@ import (
 	"testing"
 )
 
-func TestCollections(t *testing.T) {
+func TestSet(t *testing.T) {
 	RegisterFailHandler(Fail)
 	RunSpecs(t, "Set Suite")
 }

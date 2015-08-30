@@ -1,20 +1,22 @@
 package set
 
 type Set struct {
-	isEmpty bool
+	size int
 }
 
 func New() *Set {
 	var s = new(Set)
-	s.isEmpty = true
-
 	return s
 }
 
 func (s *Set) IsEmpty() bool {
-	return s.isEmpty
+	return s.size == 0
+}
+
+func (s *Set) Size() int {
+	return s.size
 }
 
 func (s *Set) Add(value string) {
-	s.isEmpty = false
+	s.size++
 }
