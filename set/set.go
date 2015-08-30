@@ -1,7 +1,8 @@
 package set
 
 type Set struct {
-	size int
+	values []string
+	size   int
 }
 
 func New() *Set {
@@ -18,5 +19,15 @@ func (s *Set) Size() int {
 }
 
 func (s *Set) Add(value string) {
+	s.values = append(s.values, value)
 	s.size++
+}
+
+func (s *Set) Contains(value string) bool {
+	for i := 0; i < s.size; i++ {
+		if s.values[i] == value {
+			return true
+		}
+	}
+	return false
 }

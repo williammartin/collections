@@ -60,4 +60,26 @@ var _ = Describe("Set", func() {
 			})
 		})
 	})
+
+	Describe("Set containment", func() {
+		Context("With zero elements", func() {
+			It("should not contain any elements", func() {
+				Expect(empty.Contains("1")).To(Equal(false))
+			})
+		})
+
+		Context("With elements added", func() {
+			It("should contain those elements added", func() {
+				Expect(one.Contains("1")).To(Equal(true))
+				Expect(many.Contains("1")).To(Equal(true))
+				Expect(many.Contains("2")).To(Equal(true))
+				Expect(many.Contains("3")).To(Equal(true))
+			})
+
+			It("should not contain elements not added", func() {
+				Expect(one.Contains("2")).To(Equal(false))
+				Expect(many.Contains("5")).To(Equal(false))
+			})
+		})
+	})
 })
