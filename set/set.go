@@ -2,20 +2,18 @@ package set
 
 type Set struct {
 	values []string
-	size   int
 }
 
 func New() *Set {
-	var s = new(Set)
-	return s
+	return new(Set)
 }
 
 func (s *Set) IsEmpty() bool {
-	return s.size == 0
+	return s.Size() == 0
 }
 
 func (s *Set) Size() int {
-	return s.size
+	return len(s.values)
 }
 
 func (s *Set) Add(value string) {
@@ -23,11 +21,10 @@ func (s *Set) Add(value string) {
 		return
 	}
 	s.values = append(s.values, value)
-	s.size++
 }
 
 func (s *Set) Contains(value string) bool {
-	for i := 0; i < s.size; i++ {
+	for i := 0; i < s.Size(); i++ {
 		if s.values[i] == value {
 			return true
 		}
@@ -36,11 +33,10 @@ func (s *Set) Contains(value string) bool {
 }
 
 func (s *Set) Remove(value string) {
-	for i := 0; i < s.size; i++ {
+	for i := 0; i < s.Size(); i++ {
 		if s.values[i] == value {
-			s.values[i] = s.values[len(s.values)-1]
-			s.values = s.values[:len(s.values)-1]
-			s.size--
+			s.values[i] = s.values[s.Size()-1]
+			s.values = s.values[:s.Size()-1]
 		}
 	}
 }
