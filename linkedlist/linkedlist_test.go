@@ -38,7 +38,7 @@ var _ = Describe("Linkedlist", func() {
 
 	})
 
-	Describe("Set size", func() {
+	Describe("LinkedList size", func() {
 		Context("With zero elements", func() {
 			It("should have a size of zero", func() {
 				Expect(empty.Size()).To(Equal(0))
@@ -58,4 +58,41 @@ var _ = Describe("Linkedlist", func() {
 		})
 	})
 
+	Describe("LinkedList containment", func() {
+		Context("With zero elements", func() {
+			It("Should not contain an element", func() {
+				Expect(empty.Contains("1")).To(Equal(false))
+			})
+		})
+
+		Context("With one element", func() {
+			It("Should contain only the previously added element", func() {
+				Expect(one.Contains("1")).To(Equal(true))
+				Expect(one.Contains("2")).To(Equal(false))
+			})
+		})
+
+		Context("With many elements", func() {
+			It("Should contain all of but only the previously added elements", func() {
+				Expect(many.Contains("1")).To(Equal(true))
+				Expect(many.Contains("2")).To(Equal(true))
+				Expect(many.Contains("3")).To(Equal(true))
+				Expect(many.Contains("4")).To(Equal(false))
+			})
+		})
+	})
+
+	Describe("LinkedList ordering", func() {
+		Context("With many elements", func() {
+			It("Should be ordered as added", func() {
+				first := many.Head()
+				second := first.Next
+				third := second.Next
+
+				Expect(first.Value).To(Equal("1"))
+				Expect(second.Value).To(Equal("2"))
+				Expect(third.Value).To(Equal("3"))
+			})
+		})
+	})
 })
