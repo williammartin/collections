@@ -8,7 +8,7 @@ type LinkedList struct {
 
 type Node struct {
 	Value string
-	Next *Node
+	Next  *Node
 }
 
 func New() *LinkedList {
@@ -24,7 +24,7 @@ func (l *LinkedList) IsEmpty() bool {
 }
 
 func (l *LinkedList) Add(value string) {
-	
+
 	newNode := new(Node)
 	newNode.Value = value
 
